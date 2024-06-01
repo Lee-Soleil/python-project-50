@@ -31,23 +31,20 @@ def stringify(value, replacer=' ', spaces_count=2):
 def generate_diff(file_path1, file_path2):
     file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
-    for key in file1:
-        file1[key] = str(file1[key])
-    for key in file2:
-        file2[key] = str(file2[key])
     all_keys = sorted(list((set(file1)) | set(file2)))
     diff = {}
     for key in all_keys:
         if key not in file1:
-            diff[key] = {'operation': 'added', 'new': file2[key].lower()}
+            diff[key] = {'operation': 'added', 'new': str(file2[key]).lower()}
         elif key not in file2:
-            diff[key] = {'operation': 'removed', 'old': file1[key].lower()}
+            diff[key] = {'operation': 'removed', 'old': str(file1[key]).lower()}
         elif file1[key] != file2[key]:
             diff[key] = {
                 'operation': 'changed',
-                'old': file1[key].lower(),
-                'new': file2[key].lower()
+                'old': str(file1[key]).lower(),
+                'new': str(file2[key]).lower()
             }
         else:
-            diff[key] = {'operation': 'unchanged', 'old': file1[key].lower()}
+            diff[key] = {'operation': 'unchanged',
+                         'old': str(file1[key]).lower()}
     return stringify(diff)

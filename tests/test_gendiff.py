@@ -9,9 +9,11 @@ def test_gendiff():
   + timeout: 20
   + verbose: true
 }'''
-    assert generate_diff('file1.json', 'file1.json') == '''{
-    follow: false
+    assert generate_diff('file1.yml', 'file2.yml') == '''{
+  - follow: false
     host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
 }'''

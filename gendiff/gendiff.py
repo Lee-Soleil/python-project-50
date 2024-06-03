@@ -1,5 +1,7 @@
-import json
+import gendiff.parser
 import itertools
+import yaml
+import json
 
 
 def stringify(value, replacer=' ', spaces_count=2):
@@ -29,8 +31,12 @@ def stringify(value, replacer=' ', spaces_count=2):
 
 
 def generate_diff(file_path1, file_path2):
-    file1 = json.load(open(file_path1))
-    file2 = json.load(open(file_path2))
+    file1 = gendiff.parser.parse(file_path1)
+    file2 = gendiff.parser.parse(file_path2)
+#    file1 = yaml.safe_load(open(file_path1))
+#    file2 = yaml.safe_load(open(file_path2))
+#    file1 = json.load(open(file_path1))
+#    file2 = json.load(open(file_path2))
     all_keys = sorted(list((set(file1)) | set(file2)))
     diff = {}
     for key in all_keys:

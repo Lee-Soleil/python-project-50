@@ -1,7 +1,5 @@
 import gendiff.parser
 import itertools
-import yaml
-import json
 
 
 def stringify(value, replacer=' ', spaces_count=2):

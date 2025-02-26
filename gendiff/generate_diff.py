@@ -37,12 +37,13 @@ def generate_diff(file1, file2):
             }
     return diff
 
+
 def if_dict(key):
     return isinstance(key, dict)
     
 
-def get_info(directory):
-    return directory.get('information', [])
+#def get_info(directory):
+#    return directory.get('information', [])
 
 
 def formatter_bool(value):
@@ -55,7 +56,6 @@ def generate_list(diff):
     lines = ['{']
     for key, value in diff.items():
         if if_dict(value):
-            information = value
             if value['operation'] == 'removed':
                 lines.append(f"  - {key}: {formatter_bool(value['old'])}")
             elif value['operation'] == 'unchanged':
@@ -66,10 +66,4 @@ def generate_list(diff):
             elif value['operation'] == 'added':
                 lines.append(f"  + {key}: {formatter_bool(value['new'])}")
     lines.append('}')
-    return lines
-    
-
-def gen_diff(diff):
-    lst = generate_list(diff)
-    for l in lst:
-        print(l)
+    return "\n".join(lines)

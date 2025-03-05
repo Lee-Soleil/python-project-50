@@ -2,7 +2,7 @@
 
 
 import argparse
-from gendiff.generate_diff import parse, generate_diff, generate_list
+from gendiff.generate_diff import generate_diff
 
 
 #def cli_parser():
@@ -17,10 +17,7 @@ args = parser.parse_args()
 
 
 def main():
-    file1 = parse(args.first_file)
-    file2 = parse(args.second_file)
-    file3 = generate_diff(file1, file2)
-    print(generate_list(file3))
+    print(generate_diff(args.first_file, args.second_file))
 
 
 if __name__ == '__main__':

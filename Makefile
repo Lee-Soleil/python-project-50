@@ -17,5 +17,4 @@ check:
 	uv run ruff check gendiff
 
 test-coverage:
-	uv run pytest
-
+	uv run pytest --cov-report xml:coverage.xml
